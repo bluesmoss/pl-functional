@@ -36,13 +36,14 @@
         </div>
         <div class="form-container">
             <form action="">
-                <div>
-                    <input type="text" name="description" id="" placeholder="Description">
-                    <input type="number" min="0" name="calories" id="" placeholder=" Calories">
-                    <input type="number" min="0" name="carbs" id="" placeholder="Carbs">
-                    <input type="number" min="0" name="protein" id="" placeholder="Protein">
+                <div class="inputs">
+                    <input type="text" name="description" id="description" placeholder="Description">
+                    <input type="number" min="0" name="calories" id="calories" placeholder=" Calories">
+                    <input type="number" min="0" name="carbs" id="carbs" placeholder="Carbs">
+                    <input type="number" min="0" name="protein" id="protein" placeholder="Protein">
+                    <button type="button" onClick="validateInputs()">+</button>
                 </div>
-                <button>+</button>
+               
             </form>
         </div>
     </div>
