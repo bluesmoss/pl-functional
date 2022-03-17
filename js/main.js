@@ -39,7 +39,7 @@ const validateInputs = () => {
   protein.value ? '' : protein.classList.add('invalid')
 
   if(description.value && calories.value && carbs.value && protein.value) {
-    console.log('OK!')
+    add();
   }
 }
 
@@ -47,3 +47,23 @@ description.addEventListener('keydown', () => description.classList.remove('inva
 calories.addEventListener('keydown', () => calories.classList.remove('invalid'))
 carbs.addEventListener('keydown', () => carbs.classList.remove('invalid'))
 protein.addEventListener('keydown', () => protein.classList.remove('invalid'))
+
+
+const add = () => {
+  const newItem = {
+    description: description.value,
+    calories: parseInt(calories.value),
+    carbs:  parseInt(carbs.value),
+    protein:  parseInt(protein.value),
+  }
+
+  list.push(newItem)
+  cleanInputs();
+}
+
+const cleanInputs = () => {
+  description.value ='';
+  calories.value ='';
+  carbs.value ='';
+  protein.value ='';
+}
