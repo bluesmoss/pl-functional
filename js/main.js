@@ -1,11 +1,5 @@
 const compose = (...functions) => (data) =>
   functions.reduceRight((value, func) => func(value), data);
-// {
-//   tag: 'h1',
-//   attr: {
-//     class: 'title'
-//   }
-// }
 
 
 const attrsToString = (obj = {}) => {
@@ -22,16 +16,26 @@ const attrsToString = (obj = {}) => {
   return string
 }
 
+
+// const attrsToString = (obj = {}) => {
+//     Object.keys(obj).
+//       map(item => `${item}="${obj[item]}"`)
+//       .join('')
+// }
+
 const tagAttrs =  obj => (content = "")  => `<${obj.tag} ${obj.attrs ? '' : ''}${attrsToString(obj.attrs)}>${content}</${obj.tag}>`
 
 
-const tag = (t) => {
-  if (typeof t === "string") {
-    return tagAttrs({ tag: t });
-  } else {
-    return tagAttrs(t);
-  }
-};
+// const tag = (t) => {
+//   if (typeof t === "string") {
+//     return tagAttrs({ tag: t });
+//   } else {
+//     return tagAttrs(t);
+//   }
+// };
+
+const tag = (t) => (typeof t === "string") ? tagAttrs({ tag: t }) : tagAttrs(t) ;
+
 
 const tableCell = tag('td')
 const tableCells = items => items.map(tableCell).join('')
