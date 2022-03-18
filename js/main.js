@@ -37,7 +37,8 @@ const tableCell = tag('td')
 const tableCells = items => items.map(tableCell).join('')
 const tableRowTag = tag('row')
 // const tableRows = items => tableRowTag(tableCells(items))
- const tableRows = items => compose(tableRowTag, tableCells)(items)
+const tableRows = items => compose(tableRowTag, tableCells)(items)
+
 
 
 let description = document.querySelector("#description")
@@ -118,14 +119,26 @@ const renderItems = () => {
 
   listWrapper.innerHTML = ""  
 
-  list.map(item => {    
+  list.map((item, index) => {
+    const removeButton = tag({
+      tag: "button",
+      attrs: { class: "btn btn-danger", onClick: `removeItem(${index})` },
+    })("X");
+
     listWrapper.innerHTML += tableRows([
-			item.description, 
-			item.calories, 
-			item.carbs, 
-			item.protein
-		])
+      item.description,
+      item.calories,
+      item.carbs,
+      item.protein,
+      removeButton
+    ]);
   })
 
 
+}
+
+const removeItem = (index) => {
+  list.splice(index, 1)
+  updateTotals()
+  renderItems()
 }
